@@ -1,0 +1,52 @@
+{
+  "peers": [
+    {
+      "peer_id": "peer-001",
+      "region": "REGION_ALPHA",
+      "asn": "AS64500",
+      "witnessing_zone": "LOCAL_CAMPUS_ZONE_A",
+      "rack": "RACK_A1",
+      "weight": 1.0,
+      "region_state": "verified",
+      "asn_state": "verified",
+      "witnessing_zone_state": "unverifiable_short_range",
+      "rack_state": "verified"
+    },
+    {
+      "peer_id": "peer-002",
+      "region": "REGION_ALPHA",
+      "asn": "AS64500",
+      "witnessing_zone": "LOCAL_CAMPUS_ZONE_B",
+      "rack": "RACK_B1",
+      "weight": 1.0,
+      "region_state": "verified",
+      "asn_state": "verified",
+      "witnessing_zone_state": "verified",
+      "rack_state": "verified"
+    },
+    {
+      "peer_id": "peer-003",
+      "region": "REGION_BETA",
+      "asn": "AS64501",
+      "witnessing_zone": "REMOTE_ZONE_C",
+      "rack": "RACK_C1",
+      "weight": 1.0,
+      "region_state": "verified",
+      "asn_state": "verified",
+      "witnessing_zone_state": "verified",
+      "rack_state": "verified"
+    },
+    {
+      "peer_id": "peer-004",
+      "region": "REGION_BETA",
+      "asn": "AS64501",
+      "witnessing_zone": "REMOTE_ZONE_C",
+      "rack": "RACK_C1",
+      "weight": 0.75,
+      "region_state": "verified",
+      "asn_state": "verified",
+      "witnessing_zone_state": "verified",
+      "rack_state": "verified"
+    }
+  ]
+}

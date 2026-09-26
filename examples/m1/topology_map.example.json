@@ -1,0 +1,84 @@
+{
+  "example_label": "SCHEMA EXAMPLE ONLY; not the other team member's actual M1 output",
+  "root": {
+    "id": "default_root",
+    "type": "root",
+    "verification_state": "verified",
+    "children": [
+      {
+        "id": "REGION_ALPHA",
+        "type": "region",
+        "verification_state": "verified",
+        "children": [
+          {
+            "id": "AS64500",
+            "type": "asn",
+            "verification_state": "verified",
+            "children": [
+              {
+                "id": "LOCAL_CAMPUS_ZONE_A",
+                "type": "witnessing_zone",
+                "verification_state": "unverifiable_short_range",
+                "children": [
+                  {
+                    "id": "RACK_A1",
+                    "type": "rack",
+                    "verification_state": "verified",
+                    "children": [
+                      {"peer_id": "peer-001", "weight": 1.0, "type": "node"}
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "LOCAL_CAMPUS_ZONE_B",
+                "type": "witnessing_zone",
+                "verification_state": "verified",
+                "children": [
+                  {
+                    "id": "RACK_B1",
+                    "type": "rack",
+                    "verification_state": "verified",
+                    "children": [
+                      {"peer_id": "peer-002", "weight": 1.0, "type": "node"}
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "REGION_BETA",
+        "type": "region",
+        "verification_state": "verified",
+        "children": [
+          {
+            "id": "AS64501",
+            "type": "asn",
+            "verification_state": "verified",
+            "children": [
+              {
+                "id": "REMOTE_ZONE_C",
+                "type": "witnessing_zone",
+                "verification_state": "verified",
+                "children": [
+                  {
+                    "id": "RACK_C1",
+                    "type": "rack",
+                    "verification_state": "verified",
+                    "children": [
+                      {"peer_id": "peer-003", "weight": 1.0, "type": "node"},
+                      {"peer_id": "peer-004", "weight": 0.75, "type": "node"}
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

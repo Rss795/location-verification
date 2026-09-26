@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fdar-location-verifier"
+version = "0.1.0"
+description = "Research prototype for distributed, evidence-based location verification"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["PyYAML>=6.0", "matplotlib>=3.8", "pydantic>=2.7"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+
+[tool.pyright]
+extraPaths = ["src"]

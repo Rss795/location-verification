@@ -1,0 +1,22 @@
+# Evaluation-only settings. All generated measurements and placements are SYNTHETIC.
+seeds: [42, 43, 44, 45, 46]
+trials: 10
+peers: 12
+witnesses: 5
+objects: 100
+measurements_per_witness: 30
+replication_factor: 3
+failure_domain_level: building
+scenarios:
+  - all_honest
+  - one_suspicious
+  - multiple_suspicious
+  - uncertain_peers
+  - domain_shortfall
+  - status_change
+  - multiple_objects
+  - repeated_trials
+  - distance_sweep
+uncertain_policies: [strict, balanced, permissive]
+distance_sweep_km: [0, 10, 25, 50, 100, 250, 500, 1000, 2000, 5000, 8000, 10000, 15000]
+output_dir: data/experiments

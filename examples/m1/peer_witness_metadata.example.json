@@ -1,0 +1,14 @@
+{
+  "peers": {
+    "peer-001": {"latitude": 17.3850, "longitude": 78.4867, "target_host": "peer-001.internal", "reliability_score": 0.7},
+    "peer-002": {"latitude": 17.3900, "longitude": 78.4900, "target_host": "peer-002.internal", "reliability_score": 0.7},
+    "peer-003": {"latitude": 19.0760, "longitude": 72.8777, "target_host": "peer-003.internal", "reliability_score": 0.7},
+    "peer-004": {"latitude": 19.0800, "longitude": 72.8800, "target_host": "peer-004.internal", "reliability_score": 0.7}
+  },
+  "witnesses": [
+    {"witness_id": "witness-1", "host": "witness-1.internal", "latitude": 17.3850, "longitude": 78.4867, "reliability_score": 0.8},
+    {"witness_id": "witness-2", "host": "witness-2.internal", "latitude": 28.6139, "longitude": 77.2090, "reliability_score": 0.8},
+    {"witness_id": "witness-3", "host": "witness-3.internal", "latitude": 13.0827, "longitude": 80.2707, "reliability_score": 0.8}
+  ],
+  "current_pin_allocations": {}
+}

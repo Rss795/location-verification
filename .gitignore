@@ -1,0 +1,20 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.env
+.env.*
+!.env.example
+# Reproducible evaluation and runtime outputs (keep source, examples, and the
+# explicitly documented loopback measurement fixture under data/raw/processed).
+.pytest-tmp/
+data/experiments/
+data/system_demo/system_run_result.json
+data/m1_system/existing_tree_result.json
+data/m1_system/generated_topology.json
+data/m1_system/reference_system_result.json
+data/m1_system/standalone_topology.json

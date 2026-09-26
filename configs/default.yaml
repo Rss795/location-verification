@@ -1,0 +1,71 @@
+measurement:
+  samples: 50
+  timeout_seconds: 2.0
+  interval_seconds: 0.2
+
+log_level: INFO
+
+# Configure real witness endpoints locally; no public IP addresses are bundled.
+# Example:
+# witnesses:
+#   - witness_id: witness_1
+#     host: <configured-hostname-or-ip>
+#     location:
+#       latitude: 0.0
+#       longitude: 0.0
+witnesses: []
+
+# Phase 3 parameters. These defaults are transparent engineering assumptions,
+# not values claimed to be experimentally calibrated or taken from the cited papers.
+inference:
+  latency_model:
+    baseline_rtt_ms: 8.0                 # Assumed fixed route/access/processing component.
+    propagation_factor_ms_per_km: 0.01   # Idealized fiber RTT lower-order scale (2 / 200,000 km/s).
+    uncertainty_ms: 15.0                 # Broad assumed path/network variability half-width.
+    uncertainty_per_100_km_ms: 2.0       # Assumed widening of model band with path length.
+    minimum_rtt_ms: 0.1                  # Positive numerical/physical lower bound, milliseconds.
+  reliability:
+    minimum_samples: 10                  # Successful probes needed for full sample-completeness score.
+    variability_scale_ms: 20.0           # RTT variability scale for stability, milliseconds.
+    sample_weight: 0.25                  # Quality-score share; weights must sum to 1.
+    stability_weight: 0.35
+    loss_weight: 0.40
+  outlier_detection:
+    robust_z_threshold: 3.5              # MAD robust-z flag threshold; not a maliciousness threshold.
+    minimum_witnesses: 3                 # Minimum usable group size before group outlier labeling.
+    scale_floor: 0.1                     # Minimum normalized-residual MAD to avoid division by zero.
+  fusion:
+    minimum_witnesses: 2                 # Minimum usable witnesses for a non-insufficient result.
+    outlier_weight_multiplier: 0.25      # Retain but reduce flagged-witness fusion weight.
+  decision:
+    plausible_support_threshold: 0.65    # Evidence-index decision threshold, not a probability.
+    suspicious_contradiction_threshold: 0.65
+    minimum_agreement: 0.55              # Minimum weighted score agreement for decisive status.
+    minimum_evidence_coverage: 0.45      # Minimum quality/reliability coverage for decisive status.
+    short_distance_km: 50.0              # Claims within this all-witness range are marked uncertain.
+
+# Phase 4 placement preferences are prototype operating assumptions, not optimal values.
+placement:
+  replication_factor: 3
+  failure_domain_level: building
+  verification_policy:
+    mode: balanced                       # strict, balanced, or permissive.
+    balanced_uncertain_multiplier: 0.5   # Conditional peers retain half evidence preference.
+    permissive_uncertain_multiplier: 0.5
+    short_range_mode: balanced            # M1 UNVERIFIABLE_SHORT_RANGE caution: strict excludes it.
+    short_range_preference_multiplier: 0.5
+  scoring:
+    confidence_weight: 0.30              # Verification evidence-strength score weight.
+    witness_agreement_weight: 0.25       # Phase 3 agreement score weight.
+    measurement_quality_weight: 0.20     # Mean Phase 3 witness measurement quality weight.
+    deterministic_hash_weight: 0.25     # Hash ranking share; every score weight sums to 1.
+  reconfiguration:
+    enabled: true
+    minimize_movement: true
+
+# Phase 6 adapter is opt-in, loopback-only, read-only, and dry-run by default.
+ipfs_cluster:
+  enabled: false
+  base_url: http://127.0.0.1:9094
+  dry_run: true
+  request_timeout_seconds: 2.0

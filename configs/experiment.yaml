@@ -1,0 +1,49 @@
+# Phase 1 placeholder for reproducible experiment settings.
+seed: 20260926
+replicates: 100
+measurement:
+  samples: 50
+  timeout_seconds: 2.0
+  interval_seconds: 0.2
+witnesses: []
+inference:
+  latency_model:
+    baseline_rtt_ms: 8.0
+    propagation_factor_ms_per_km: 0.01
+    uncertainty_ms: 15.0
+    uncertainty_per_100_km_ms: 2.0
+    minimum_rtt_ms: 0.1
+  reliability:
+    minimum_samples: 10
+    variability_scale_ms: 20.0
+    sample_weight: 0.25
+    stability_weight: 0.35
+    loss_weight: 0.40
+  outlier_detection:
+    robust_z_threshold: 3.5
+    minimum_witnesses: 3
+    scale_floor: 0.1
+  fusion:
+    minimum_witnesses: 2
+    outlier_weight_multiplier: 0.25
+  decision:
+    plausible_support_threshold: 0.65
+    suspicious_contradiction_threshold: 0.65
+    minimum_agreement: 0.55
+    minimum_evidence_coverage: 0.45
+    short_distance_km: 50.0
+placement:
+  replication_factor: 3
+  failure_domain_level: building
+  verification_policy:
+    mode: balanced
+    balanced_uncertain_multiplier: 0.5
+    permissive_uncertain_multiplier: 0.5
+  scoring:
+    confidence_weight: 0.30
+    witness_agreement_weight: 0.25
+    measurement_quality_weight: 0.20
+    deterministic_hash_weight: 0.25
+  reconfiguration:
+    enabled: true
+    minimize_movement: true

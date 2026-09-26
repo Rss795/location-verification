@@ -1,0 +1,26 @@
+# Self-contained local demo settings. No network or Cluster service is required.
+measurement:
+  samples: 30
+  timeout_seconds: 2.0
+  interval_seconds: 0.0
+log_level: WARNING
+witnesses: []
+inference: {}
+placement:
+  replication_factor: 3
+  failure_domain_level: building
+  verification_policy:
+    mode: balanced
+    short_range_mode: balanced
+    short_range_preference_multiplier: 0.5
+ipfs_cluster:
+  enabled: false
+  base_url: http://127.0.0.1:9094
+  dry_run: true
+  request_timeout_seconds: 1.0
+demo:
+  seed: 42
+  peer_count: 12
+  witness_count: 5
+  object_id_prefix: demo-object
+  content_id: synthetic-demo-content

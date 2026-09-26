@@ -1,0 +1,2899 @@
+{
+  "baseline_placement": {
+    "available_distinct_failure_domains": 3,
+    "deterministic_selection_metadata": {
+      "algorithm": "sha256-ranked hierarchical one-peer-per-domain prototype",
+      "hash": "SHA-256",
+      "hash_input": "object_id NUL failure_domain NUL peer_id",
+      "peer_weight": "M1 PeerNode weight multiplies ranking score in both modes",
+      "score_mode": "deterministic hash only"
+    },
+    "eligible_peer_count": 4,
+    "excluded_peers": [],
+    "failure_domain_level": "witnessing_zone",
+    "mode": "BASELINE",
+    "object_id": "m1-integrated-object",
+    "placement_reason": "selected 3 replicas in distinct witnessing_zone failure domains",
+    "placement_status": "SUCCESS",
+    "requested_replication_factor": 3,
+    "selected_failure_domains": [
+      "LOCAL_CAMPUS_ZONE_A",
+      "REMOTE_ZONE_C",
+      "LOCAL_CAMPUS_ZONE_B"
+    ],
+    "selected_peers": [
+      {
+        "confidence": 0.8000000000000002,
+        "domain_level": "witnessing_zone",
+        "failure_domain": "LOCAL_CAMPUS_ZONE_A",
+        "peer_id": "peer-001",
+        "preference_score": 0.6019412102624362,
+        "topology_verification_state": "unverifiable_short_range",
+        "uncertainty": 0.19999999999999984,
+        "verification_status": "PLAUSIBLE",
+        "why_eligible": "baseline trusts topology claim without verification",
+        "why_selected": "highest deterministic object/domain/peer hash rank in baseline",
+        "witnessing_zone_verification_state": "unverifiable_short_range"
+      },
+      {
+        "confidence": 0.8000000000000002,
+        "domain_level": "witnessing_zone",
+        "failure_domain": "REMOTE_ZONE_C",
+        "peer_id": "peer-004",
+        "preference_score": 0.5648476896466692,
+        "topology_verification_state": "verified",
+        "uncertainty": 0.19999999999999984,
+        "verification_status": "PLAUSIBLE",
+        "why_eligible": "baseline trusts topology claim without verification",
+        "why_selected": "highest deterministic object/domain/peer hash rank in baseline",
+        "witnessing_zone_verification_state": "verified"
+      },
+      {
+        "confidence": 0.8000000000000002,
+        "domain_level": "witnessing_zone",
+        "failure_domain": "LOCAL_CAMPUS_ZONE_B",
+        "peer_id": "peer-002",
+        "preference_score": 0.47733751730499857,
+        "topology_verification_state": "verified",
+        "uncertainty": 0.19999999999999984,
+        "verification_status": "PLAUSIBLE",
+        "why_eligible": "baseline trusts topology claim without verification",
+        "why_selected": "highest deterministic object/domain/peer hash rank in baseline",
+        "witnessing_zone_verification_state": "verified"
+      }
+    ],
+    "verification_summary": {
+      "PLAUSIBLE": 4
+    }
+  },
+  "claims": [
+    {
+      "claimed_failure_domain": "LOCAL_CAMPUS_ZONE_A",
+      "claimed_location": {
+        "latitude": 17.385,
+        "longitude": 78.4867
+      },
+      "peer_id": "peer-001"
+    },
+    {
+      "claimed_failure_domain": "LOCAL_CAMPUS_ZONE_B",
+      "claimed_location": {
+        "latitude": 17.39,
+        "longitude": 78.49
+      },
+      "peer_id": "peer-002"
+    },
+    {
+      "claimed_failure_domain": "REMOTE_ZONE_C",
+      "claimed_location": {
+        "latitude": 19.076,
+        "longitude": 72.8777
+      },
+      "peer_id": "peer-003"
+    },
+    {
+      "claimed_failure_domain": "REMOTE_ZONE_C",
+      "claimed_location": {
+        "latitude": 19.08,
+        "longitude": 72.88
+      },
+      "peer_id": "peer-004"
+    }
+  ],
+  "cluster_dry_run": {
+    "add_peer_ids": [
+      "peer-001",
+      "peer-002",
+      "peer-003"
+    ],
+    "content_id": "m1-integrated-object",
+    "current_peer_ids": [],
+    "desired_peer_ids": [
+      "peer-003",
+      "peer-002",
+      "peer-001"
+    ],
+    "dry_run": true,
+    "operation": "REPRESENT_DESIRED_PLACEMENT_ONLY",
+    "remove_peer_ids": []
+  },
+  "fdar_placement": {
+    "available_distinct_failure_domains": 3,
+    "deterministic_selection_metadata": {
+      "algorithm": "sha256-ranked hierarchical one-peer-per-domain prototype",
+      "hash": "SHA-256",
+      "hash_input": "object_id NUL failure_domain NUL peer_id",
+      "peer_weight": "M1 PeerNode weight multiplies ranking score in both modes",
+      "score_mode": "verification preference plus deterministic hash"
+    },
+    "eligible_peer_count": 4,
+    "excluded_peers": [],
+    "failure_domain_level": "witnessing_zone",
+    "mode": "FDAR",
+    "object_id": "m1-integrated-object",
+    "placement_reason": "selected 3 replicas in distinct witnessing_zone failure domains",
+    "placement_status": "SUCCESS",
+    "requested_replication_factor": 3,
+    "selected_failure_domains": [
+      "REMOTE_ZONE_C",
+      "LOCAL_CAMPUS_ZONE_B",
+      "LOCAL_CAMPUS_ZONE_A"
+    ],
+    "selected_peers": [
+      {
+        "confidence": 0.8000000000000002,
+        "domain_level": "witnessing_zone",
+        "failure_domain": "REMOTE_ZONE_C",
+        "peer_id": "peer-003",
+        "preference_score": 0.8134831447349192,
+        "topology_verification_state": "verified",
+        "uncertainty": 0.19999999999999984,
+        "verification_status": "PLAUSIBLE",
+        "why_eligible": "verification evidence is plausible",
+        "why_selected": "highest deterministic evidence-preference rank among remaining domains",
+        "witnessing_zone_verification_state": "verified"
+      },
+      {
+        "confidence": 0.8000000000000002,
+        "domain_level": "witnessing_zone",
+        "failure_domain": "LOCAL_CAMPUS_ZONE_B",
+        "peer_id": "peer-002",
+        "preference_score": 0.8093343793262497,
+        "topology_verification_state": "verified",
+        "uncertainty": 0.19999999999999984,
+        "verification_status": "PLAUSIBLE",
+        "why_eligible": "verification evidence is plausible",
+        "why_selected": "highest deterministic evidence-preference rank among remaining domains",
+        "witnessing_zone_verification_state": "verified"
+      },
+      {
+        "confidence": 0.8000000000000002,
+        "domain_level": "witnessing_zone",
+        "failure_domain": "LOCAL_CAMPUS_ZONE_A",
+        "peer_id": "peer-001",
+        "preference_score": 0.4202426512828046,
+        "topology_verification_state": "unverifiable_short_range",
+        "uncertainty": 0.19999999999999984,
+        "verification_status": "PLAUSIBLE",
+        "why_eligible": "M1 marks physical separation unverifiable at short range; retained cautiously by balanced policy",
+        "why_selected": "highest deterministic evidence-preference rank among remaining domains",
+        "witnessing_zone_verification_state": "unverifiable_short_range"
+      }
+    ],
+    "verification_summary": {
+      "PLAUSIBLE": 4
+    }
+  },
+  "m1_topology": {
+    "failure_domain_level": "witnessing_zone",
+    "hierarchy": [
+      "region",
+      "asn",
+      "witnessing_zone",
+      "rack",
+      "peer"
+    ],
+    "peers": [
+      {
+        "asn": "AS64500",
+        "effective_path_state": "unverifiable_short_range",
+        "path_states": [
+          "verified",
+          "verified",
+          "verified",
+          "unverifiable_short_range",
+          "verified"
+        ],
+        "peer_id": "peer-001",
+        "rack": "RACK_A1",
+        "region": "REGION_ALPHA",
+        "witnessing_zone": "LOCAL_CAMPUS_ZONE_A",
+        "witnessing_zone_verification_state": "unverifiable_short_range"
+      },
+      {
+        "asn": "AS64500",
+        "effective_path_state": "verified",
+        "path_states": [
+          "verified",
+          "verified",
+          "verified",
+          "verified",
+          "verified"
+        ],
+        "peer_id": "peer-002",
+        "rack": "RACK_B1",
+        "region": "REGION_ALPHA",
+        "witnessing_zone": "LOCAL_CAMPUS_ZONE_B",
+        "witnessing_zone_verification_state": "verified"
+      },
+      {
+        "asn": "AS64501",
+        "effective_path_state": "verified",
+        "path_states": [
+          "verified",
+          "verified",
+          "verified",
+          "verified",
+          "verified"
+        ],
+        "peer_id": "peer-003",
+        "rack": "RACK_C1",
+        "region": "REGION_BETA",
+        "witnessing_zone": "REMOTE_ZONE_C",
+        "witnessing_zone_verification_state": "verified"
+      },
+      {
+        "asn": "AS64501",
+        "effective_path_state": "verified",
+        "path_states": [
+          "verified",
+          "verified",
+          "verified",
+          "verified",
+          "verified"
+        ],
+        "peer_id": "peer-004",
+        "rack": "RACK_C1",
+        "region": "REGION_BETA",
+        "witnessing_zone": "REMOTE_ZONE_C",
+        "witnessing_zone_verification_state": "verified"
+      }
+    ],
+    "root_id": "default_root"
+  },
+  "measurement_source": "SYNTHETIC model-generated RTT; NOT REAL NETWORK MEASUREMENTS",
+  "metadata": {
+    "evidence_source": "SYNTHETIC model-generated RTT; NOT REAL NETWORK MEASUREMENTS",
+    "failure_domain_level": "witnessing_zone",
+    "m1_peer_count": 4,
+    "m1_verification_states": {
+      "peer-001": {
+        "effective_path_state": "unverifiable_short_range",
+        "path_states": [
+          "verified",
+          "verified",
+          "verified",
+          "unverifiable_short_range",
+          "verified"
+        ],
+        "witnessing_zone_state": "unverifiable_short_range"
+      },
+      "peer-002": {
+        "effective_path_state": "verified",
+        "path_states": [
+          "verified",
+          "verified",
+          "verified",
+          "verified",
+          "verified"
+        ],
+        "witnessing_zone_state": "verified"
+      },
+      "peer-003": {
+        "effective_path_state": "verified",
+        "path_states": [
+          "verified",
+          "verified",
+          "verified",
+          "verified",
+          "verified"
+        ],
+        "witnessing_zone_state": "verified"
+      },
+      "peer-004": {
+        "effective_path_state": "verified",
+        "path_states": [
+          "verified",
+          "verified",
+          "verified",
+          "verified",
+          "verified"
+        ],
+        "witnessing_zone_state": "verified"
+      }
+    },
+    "m1_witnessing_zone_preserved": true,
+    "topology_source": "M1 topology_map.json"
+  },
+  "object_id": "m1-integrated-object",
+  "reasons": [
+    "selected 3 replicas in distinct witnessing_zone failure domains"
+  ],
+  "reconfiguration": null,
+  "research_boundary": "RTT plausibility is not cryptographic proof of physical location",
+  "status": "PLANNED",
+  "verification_results": [
+    {
+      "claimed_failure_domain": "LOCAL_CAMPUS_ZONE_A",
+      "confidence": 0.8000000000000002,
+      "evidence": [
+        {
+          "consistency_score": 1.0,
+          "distance_km": 0.0,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 8.0,
+          "expected_upper_ms": 23.0,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 8.0,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-1"
+        },
+        {
+          "consistency_score": 1.0,
+          "distance_km": 1255.395144781994,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 20.55395144781994,
+          "expected_upper_ms": 60.66185434345982,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 20.55395144781994,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-2"
+        },
+        {
+          "consistency_score": 1.0,
+          "distance_km": 515.2423460596802,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 13.152423460596802,
+          "expected_upper_ms": 38.45727038179041,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 13.152423460596802,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-3"
+        },
+        {
+          "aggregate": {
+            "confidence": 0.8000000000000002,
+            "confidence_interpretation": "uncalibrated evidence-strength score, not probability",
+            "contradiction_score": 0.0,
+            "evidence_coverage": 0.8000000000000002,
+            "reasons": [
+              "reliability-weighted evidence is predominantly consistent with the claim"
+            ],
+            "support_score": 1.0,
+            "uncertainty": 0.19999999999999984,
+            "usable_witness_count": 3,
+            "witness_agreement": 1.0
+          }
+        }
+      ],
+      "peer_id": "peer-001",
+      "status": "PLAUSIBLE",
+      "uncertainty": 0.19999999999999984,
+      "witness_agreement": 1.0
+    },
+    {
+      "claimed_failure_domain": "LOCAL_CAMPUS_ZONE_B",
+      "confidence": 0.8000000000000002,
+      "evidence": [
+        {
+          "consistency_score": 1.0,
+          "distance_km": 0.6570633201553645,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 8.006570633201553,
+          "expected_upper_ms": 23.01971189960466,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 8.006570633201553,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-1"
+        },
+        {
+          "consistency_score": 1.0,
+          "distance_km": 1254.8770290663124,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 20.548770290663125,
+          "expected_upper_ms": 60.64631087198937,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 20.548770290663125,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-2"
+        },
+        {
+          "consistency_score": 1.0,
+          "distance_km": 515.6265040657116,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 13.156265040657116,
+          "expected_upper_ms": 38.46879512197135,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 13.156265040657116,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-3"
+        },
+        {
+          "aggregate": {
+            "confidence": 0.8000000000000002,
+            "confidence_interpretation": "uncalibrated evidence-strength score, not probability",
+            "contradiction_score": 0.0,
+            "evidence_coverage": 0.8000000000000002,
+            "reasons": [
+              "reliability-weighted evidence is predominantly consistent with the claim"
+            ],
+            "support_score": 1.0,
+            "uncertainty": 0.19999999999999984,
+            "usable_witness_count": 3,
+            "witness_agreement": 1.0
+          }
+        }
+      ],
+      "peer_id": "peer-002",
+      "status": "PLAUSIBLE",
+      "uncertainty": 0.19999999999999984,
+      "witness_agreement": 1.0
+    },
+    {
+      "claimed_failure_domain": "REMOTE_ZONE_C",
+      "confidence": 0.8000000000000002,
+      "evidence": [
+        {
+          "consistency_score": 1.0,
+          "distance_km": 621.4637084770729,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 14.214637084770729,
+          "expected_upper_ms": 41.64391125431219,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 14.214637084770729,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-1"
+        },
+        {
+          "consistency_score": 1.0,
+          "distance_km": 1148.0964588537802,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 19.4809645885378,
+          "expected_upper_ms": 57.442893765613405,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 19.4809645885378,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-2"
+        },
+        {
+          "consistency_score": 1.0,
+          "distance_km": 1033.0999392641822,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 18.33099939264182,
+          "expected_upper_ms": 53.992998177925465,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 18.33099939264182,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-3"
+        },
+        {
+          "aggregate": {
+            "confidence": 0.8000000000000002,
+            "confidence_interpretation": "uncalibrated evidence-strength score, not probability",
+            "contradiction_score": 0.0,
+            "evidence_coverage": 0.8000000000000002,
+            "reasons": [
+              "reliability-weighted evidence is predominantly consistent with the claim"
+            ],
+            "support_score": 1.0,
+            "uncertainty": 0.19999999999999984,
+            "usable_witness_count": 3,
+            "witness_agreement": 1.0
+          }
+        }
+      ],
+      "peer_id": "peer-003",
+      "status": "PLAUSIBLE",
+      "uncertainty": 0.19999999999999984,
+      "witness_agreement": 1.0
+    },
+    {
+      "claimed_failure_domain": "REMOTE_ZONE_C",
+      "confidence": 0.8000000000000002,
+      "evidence": [
+        {
+          "consistency_score": 1.0,
+          "distance_km": 621.3603710040622,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 14.213603710040623,
+          "expected_upper_ms": 41.64081113012187,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 14.213603710040623,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-1"
+        },
+        {
+          "consistency_score": 1.0,
+          "distance_km": 1147.593821349898,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 19.475938213498978,
+          "expected_upper_ms": 57.42781464049693,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 19.475938213498978,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-2"
+        },
+        {
+          "consistency_score": 1.0,
+          "distance_km": 1033.1927844571046,
+          "effective_reliability": 0.8,
+          "expected_lower_ms": 0.1,
+          "expected_rtt_ms": 18.331927844571048,
+          "expected_upper_ms": 53.995783533713144,
+          "jitter_ms": 0.0,
+          "mad_rtt_ms": 0.0,
+          "measurement_quality": 1.0,
+          "normalized_residual": 0.0,
+          "observed_median_rtt_ms": 18.331927844571048,
+          "outlier": false,
+          "outlier_reason": "within group pattern",
+          "outlier_score": 0.0,
+          "packet_loss_rate": 0.0,
+          "prior_witness_reliability": 0.8,
+          "residual_ms": 0.0,
+          "retained_for_analysis": true,
+          "sample_count": 30,
+          "sample_outliers": [
+            {
+              "is_outlier": false,
+              "observation_index": 0,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 1,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 2,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 3,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 4,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 5,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 6,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 7,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 8,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 9,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 10,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 11,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 12,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 13,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 14,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 15,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 16,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 17,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 18,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 19,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 20,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 21,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 22,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 23,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 24,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 25,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 26,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 27,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 28,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            },
+            {
+              "is_outlier": false,
+              "observation_index": 29,
+              "retained_for_analysis": true,
+              "robust_z_score": 0.0
+            }
+          ],
+          "successful_count": 30,
+          "within_expected_range": true,
+          "witness_id": "witness-3"
+        },
+        {
+          "aggregate": {
+            "confidence": 0.8000000000000002,
+            "confidence_interpretation": "uncalibrated evidence-strength score, not probability",
+            "contradiction_score": 0.0,
+            "evidence_coverage": 0.8000000000000002,
+            "reasons": [
+              "reliability-weighted evidence is predominantly consistent with the claim"
+            ],
+            "support_score": 1.0,
+            "uncertainty": 0.19999999999999984,
+            "usable_witness_count": 3,
+            "witness_agreement": 1.0
+          }
+        }
+      ],
+      "peer_id": "peer-004",
+      "status": "PLAUSIBLE",
+      "uncertainty": 0.19999999999999984,
+      "witness_agreement": 1.0
+    }
+  ]
+}
