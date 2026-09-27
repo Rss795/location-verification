@@ -149,6 +149,8 @@ The evaluation runner uses fixed seeds and generated peers, witnesses, locations
 
 The runner writes a manifest, raw JSON/CSV records, aggregated JSON, and nine plots under `data/experiments/`. The distance sweep includes 500 km and longer offsets, but only describes model behavior under generated witness layouts. Detection metrics use generated labels only. **Synthetic evaluation is not real-world validation or an estimate of field accuracy.**
 
+The generated run files are excluded from Git, but a set of clearly labeled synthetic plots is committed for direct viewing in the [Synthetic results gallery](docs/synthetic_results.md).
+
 Run the distance sweep alone with `python experiments/run_evaluation.py --scenario distance_sweep --trials 30 --distance-sweep-km 0,50,250,500,1000,2000,5000,8000,10000,15000`. In a 30-trial run at offsets 500, 1,000, 2,000, 5,000, 8,000, 10,000, and 15,000 km, the configured model flagged 0% at the first four tested offsets, 20% at 8,000 km, and 100% at 10,000 and 15,000 km. These are synthetic scenario frequencies, not a threshold estimate; the run does not support the proposed ~500 km boundary.
 
 ### Phase 6: Orchestration and Cluster dry-run
@@ -332,6 +334,8 @@ The repository does not implement or benchmark Filecoin, Cassandra, Copysets, or
 
 ## Documentation
 
+- [Complete project dossier](docs/PROJECT_DOSSIER.md)
+- [Synthetic results and plots](docs/synthetic_results.md)
 - [Architecture](docs/architecture.md)
 - [M1 adapter and sidecar format](docs/m1_adapter.md)
 - [Measurement engine](docs/measurement_engine.md)
