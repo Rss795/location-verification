@@ -1,125 +1,214 @@
 # Synthetic evaluation results
 
-These figures show **synthetic model results**. They are not measurements from campus or geographically distributed peers, field accuracy, calibrated probabilities, or proof of physical location. The configured latency assumptions, generated witness layout, and noise determine the plotted rates. See [Evaluation Engine](evaluation_engine.md) for the metric definitions and limitations.
+These figures and explanations describe synthetic model results. They are not measurements from campus or geographically distributed peers, field accuracy, calibrated probabilities, or proof of physical location. The configured latency assumptions, generated witness layout, and noise determine the plotted rates. See [Evaluation Engine](evaluation_engine.md) for metric definitions and limitations.
 
-Plots 1–8 come from the seeded synthetic evaluation suite. Plot 9 comes from a separate 30-trial location-mismatch sweep. The committed PNG files are in [`docs/figures/synthetic-distance-sweep/`](figures/synthetic-distance-sweep/).
+## Plot 1 — Suspicious replicas selected
 
-## Terms used in the charts
-
-- **Peer:** a generated IPFS node that can hold a replica.
-- **Replica:** one copy of the content. The evaluation requests three replicas.
-- **Failure domain:** a generated infrastructure group, such as a building, whose peers are treated as sharing a possible failure risk.
-- **Baseline:** deterministic hash-ranked placement that uses availability and the domain constraint but ignores verification results.
-- **FDAR:** verification-aware deterministic placement. It applies the configured eligibility policy and seeks distinct failure domains.
-- **Suspicious:** a Phase 3 verification status. It means the generated RTT evidence conflicts with a claim under the configured model; it does not prove deception.
-- **Rate:** a fraction from 0 to 1. For example, 0.2 means 20% of the cases included in that metric.
-- **Synthetic ground truth:** the actual/claimed labels generated for the experiment. This is known only inside the simulation.
-
-## Plots
-
-### 1. Suspicious replicas selected
+[Open Plot 1](figures/synthetic-distance-sweep/01_suspicious_selection.png)
 
 ![Synthetic suspicious replica selection comparison](figures/synthetic-distance-sweep/01_suspicious_selection.png)
 
-**X-axis — Scenario.** Each category is a generated setup: `all_honest` has matching claims; `distance_sweep` varies a generated location offset; `domain_shortfall` has too few eligible domains; `multiple_objects` reuses a peer pool for many objects; `multiple_suspicious` and `one_suspicious` introduce several or one generated mismatch; `repeated_trials` repeats trials; `status_change` changes a verification result after placement; `uncertain_peers` makes evidence uncertain.
+**X-axis — Scenario**
 
-**Y-axis — Mean suspicious selected peers.** The average count of selected replicas whose generated peer received the `SUSPICIOUS` verifier status. It is a count per placement, not a percentage.
+Each label names a generated test situation:
 
-**Bars — Blue is BASELINE; orange is FDAR.** A taller bar means that method selected more peers classified as suspicious. In `one_suspicious`, the baseline average is about 0.2 and FDAR is zero in these generated records. Both are zero for `all_honest`, as expected in this setup.
+- `all_honest`: generated peer claims match their generated truth.
+- `distance_sweep`: a peer’s generated actual location is moved away from its claimed location by different distances.
+- `domain_shortfall`: too few eligible domains are available to satisfy the requested replicas.
+- `multiple_objects`: the same generated peer pool is used to place many objects.
+- `multiple_suspicious`: several peers have generated mismatches.
+- `one_suspicious`: one peer has a generated mismatch.
+- `repeated_trials`: generated trials are repeated with different recorded seeds.
+- `status_change`: a peer’s verification status changes after an initial placement.
+- `uncertain_peers`: evidence is set up to produce uncertain verification results.
 
-**How to read it.** The plot illustrates how verification-aware eligibility can change replica choices. `distance_sweep` combines multiple offsets into one scenario average, so use Plot 9 to see the offset-specific behavior. A zero bar describes these records; it does not prove FDAR will always avoid suspicious peers in real networks.
+**Y-axis — Mean suspicious selected peers**
 
-### 2. Replica domain diversity
+This is the average number of selected replicas that were classified as `SUSPICIOUS` by the verifier. It is a count per placement, not a percentage.
+
+**Bars — Blue is Baseline; orange is FDAR**
+
+For each scenario, compare the blue and orange bars. A taller bar means that method selected more peers classified as suspicious.
+
+For example, in `one_suspicious`, the baseline bar is about 0.2 suspicious peers per placement, while the FDAR bar is at zero. That suggests the baseline selected the generated suspicious peer in some placements, while FDAR did not in the generated placements represented here. In `all_honest`, both are at zero, as expected if no peers were classified suspicious.
+
+Important caveat: `distance_sweep` combines placements across many different distance offsets into one average. That bar can hide how behavior changes with distance; Plot 9 is the chart for that question. Also, a zero bar means no suspicious peer was selected in these generated records. It doesn’t prove that FDAR will always avoid suspicious peers in real networks.
+
+## Plot 2 — Replica domain diversity
+
+[Open Plot 2](figures/synthetic-distance-sweep/02_domain_diversity.png)
 
 ![Synthetic replica domain diversity](figures/synthetic-distance-sweep/02_domain_diversity.png)
 
-**X-axis — Scenario and, for uncertain peers, policy.** The categories are the generated setups described above. `uncertain_peers (strict)`, `(balanced)`, and `(permissive)` are separate policy cases; the policy controls how uncertain verification results affect FDAR eligibility.
+**X-axis — Scenario**
 
-**Y-axis — Distinct domains / requested replicas.** This ratio is the number of distinct failure domains represented in the placement divided by the requested replica count of three. A value of `1.0` means all three requested replicas occupy distinct domains. About `0.67` means two distinct domains are represented relative to three requested replicas. A zero can mean no replicas were placed.
+These are the scenario categories, with `distance_sweep` left out. The labels have the same meanings as in Plot 1.
 
-**Lines and markers — Blue circles are BASELINE; orange squares are FDAR.** Each marker is a scenario result. The connecting line is a visual guide between categories, not a timeline or continuous trend.
+**Y-axis — Distinct domains / requested replicas**
 
-**How to read it.** FDAR is about `0.67` for `domain_shortfall`, showing that only two distinct eligible domains were available for three requested replicas. This is a domain-capacity shortfall, not a failure to enforce diversity. The uncertain-peer policy cases are now labeled separately; strict can produce a lower ratio when it excludes uncertain candidates, while more permissive policies can retain more candidates.
+This is a ratio:
 
-### 3. Placement success
+\[
+\frac{\text{number of distinct failure domains among selected replicas}}
+{\text{number of requested replicas}}
+\]
+
+With a replication factor of 3:
+
+- `1.0` means three replicas cover three distinct domains.
+- About `0.67` means two distinct domains cover the requested three replicas.
+- Lower values mean less domain diversity relative to the request.
+
+**Lines and markers — Blue is Baseline; orange is FDAR**
+
+Each marker is a result for a scenario. The chart connects the markers to make comparisons easier; the line does not represent a progression over time.
+
+The lower FDAR value for `domain_shortfall` is meaningful: the generated setup has fewer eligible domains than the requested replication factor. FDAR reports the shortfall rather than putting multiple replicas in a domain just to reach three.
+
+Plotting problem: `uncertain_peers` has results for multiple policies—strict, balanced, and permissive—but they are drawn at the same x-axis category and connected as if they were one line. This makes the orange drop at that category misleading. The chart needs to show those policies separately or aggregate them clearly before I’d use that part of it.
+
+## Plot 3 — Placement success rate
+
+[Open Plot 3](figures/synthetic-distance-sweep/03_placement_success.png)
 
 ![Synthetic placement success](figures/synthetic-distance-sweep/03_placement_success.png)
 
-**X-axis — Scenario and uncertain-peer policy.** This uses the same scenario categories as Plot 2. The three uncertain-peer policy cases are displayed separately.
+**X-axis — Scenario**
 
-**Y-axis — Successful placement attempts / attempts.** This fraction is the number of attempts that reached the requested three replicas divided by all counted attempts. `1.0` means every attempt reached three; `0.0` means none did.
+The generated scenarios, as above, excluding `distance_sweep`.
 
-**Lines and markers — Blue circles are BASELINE; orange squares are FDAR.** Markers give success rates for each category; connecting lines are only a visual guide.
+**Y-axis — Successful placement attempts / attempts**
 
-**How to read it.** FDAR reaches zero for `domain_shortfall` because it cannot fill three replicas from distinct eligible domains in that setup. Reporting a shortfall preserves the domain constraint. For `uncertain_peers`, compare the separately labeled strict, balanced, and permissive cases; a stricter policy can reduce the eligible pool and therefore reduce the chance of filling all replicas. This is placement success, not data-transfer success.
+This is the fraction of placement attempts that selected the full requested number of replicas:
 
-### 4. Reconfiguration movement
+- `1.0` means every counted attempt reached the replication factor.
+- `0.0` means none did.
+- `0.5` means half did.
+
+**Lines and markers — Blue is Baseline; orange is FDAR**
+
+The FDAR drop to zero at `domain_shortfall` is the expected outcome if there aren’t enough eligible domains for the requested three replicas. The system is prioritizing the configured domain constraint, so a shortfall is reported instead of filling the replica count by violating that constraint.
+
+Plotting problem: As in Plot 2, the uncertain-peer results use multiple policies at the same x-axis category. The line connects these policy results without identifying them, so the apparent drop at `uncertain_peers` is not a clean single success-rate result. Don’t present it as one result until the policies are separated or explicitly combined.
+
+## Plot 4 — Reconfiguration movement plan
+
+[Open Plot 4](figures/synthetic-distance-sweep/04_reconfiguration_movement.png)
 
 ![Synthetic reconfiguration movement](figures/synthetic-distance-sweep/04_reconfiguration_movement.png)
 
-**X-axis — Placement mode.** The bar is labeled FDAR because this chart summarizes the generated FDAR reconfiguration plans in the evaluation.
+**X-axis — FDAR**
 
-**Y-axis — Mean replicas moved (plans only).** This is the average count of replica assignments changed in a generated repair plan. The bar at `1` means one replica was changed on average in the counted plans.
+The bar is labeled FDAR because this plot shows the generated FDAR repair plans included in the results.
 
-**How to read it.** The scenario changes a peer’s status after an initial placement, then the planner proposes a repair while retaining valid replicas where possible. This is a plan only: it does not show bytes copied, transfer time, or actual movement of data. The chart does not show the number of plans contributing to the average.
+**Y-axis — Mean replicas moved (plans only)**
 
-### 5. Peer selection frequency
+This is the average number of replica assignments changed in the generated reconfiguration plans. The bar is at 1, meaning the plans changed one replica on average.
+
+The chart is about planned assignment changes after a status change. It does not show bytes copied, transfer time, or actual movement of data. It would be clearer with the number of plans included, so the audience knows how many cases contribute to the average.
+
+## Plot 5 — FDAR peer selection frequency
+
+[Open Plot 5](figures/synthetic-distance-sweep/05_peer_selection_frequency.png)
 
 ![Synthetic peer selection frequency](figures/synthetic-distance-sweep/05_peer_selection_frequency.png)
 
-**X-axis — Peer IDs.** Each label, such as `peer-001`, identifies one generated peer.
+**X-axis — Peer IDs**
 
-**Y-axis — Selected replica instances.** This is the number of times the peer appears in FDAR placements across the generated `multiple_objects` and `repeated_trials` scenarios. A taller bar means more selections in those records.
+Each label, such as `peer-001`, identifies one generated peer.
 
-**How to read it.** The counts are in a broadly similar range, with some variation. This is a descriptive count, not a fairness test: it does not normalize by each peer’s eligibility or availability opportunities.
+**Y-axis — Selected replica instances**
 
-### 6. Failure-domain selection frequency
+The bar height is how many times that peer appears in FDAR placements across the generated multi-object and repeated-trial scenarios. A taller bar means more selections in those records.
+
+The bars are in a fairly similar range, though some peers are selected more often than others. This is a descriptive count, not a fairness measurement: the chart does not show how often each peer was eligible or available to be selected.
+
+## Plot 6 — FDAR failure-domain selection frequency
+
+[Open Plot 6](figures/synthetic-distance-sweep/06_domain_selection_frequency.png)
 
 ![Synthetic domain selection frequency](figures/synthetic-distance-sweep/06_domain_selection_frequency.png)
 
-**X-axis — Failure-domain IDs.** Labels such as `A1`, `A2`, and `B1` identify generated failure domains.
+**X-axis — Failure-domain IDs**
 
-**Y-axis — Selected replica instances.** This counts selected replicas assigned to each domain across the generated `multiple_objects` and `repeated_trials` scenarios.
+Labels such as `A1`, `A2`, and `B1` identify generated failure domains. A failure domain is a group of peers treated as sharing a possible failure risk.
 
-**How to read it.** The bars show how selection is distributed among generated domains. Some are selected more often than others. These counts do not by themselves establish fairness or resilience; they do not show how many eligible peers or placement opportunities each domain had.
+**Y-axis — Selected replica instances**
 
-### 7. Verification status distribution
+This counts how many selected replicas came from each domain across the generated multi-object and repeated-trial scenarios.
+
+The bars look broadly similar, but some domains are selected more often. Like Plot 5, this is not enough by itself to claim the algorithm is fair: domains may differ in which peers they contain, and the chart doesn’t show each domain’s eligible opportunities.
+
+## Plot 7 — Phase 3 verification statuses
+
+[Open Plot 7](figures/synthetic-distance-sweep/07_verification_status_distribution.png)
 
 ![Synthetic verification status distribution](figures/synthetic-distance-sweep/07_verification_status_distribution.png)
 
-**X-axis — Phase 3 verification status.** `PLAUSIBLE` means evidence meets configured consistency and quality rules; `SUSPICIOUS` means evidence conflicts with a claim under the configured model; `UNCERTAIN` means evidence is ambiguous or calls for caution.
+**X-axis — Verification status**
 
-**Y-axis — Generated peers.** This is the number of generated peer cases assigned each status, counting each generated trial/scenario group once rather than counting duplicated BASELINE and FDAR records twice. The distance-sweep offsets are not separate groups in this chart.
+- `PLAUSIBLE`: the available generated evidence meets the configured consistency and quality rules.
+- `SUSPICIOUS`: the evidence conflicts with the claim strongly enough under the configured model.
+- `UNCERTAIN`: the evidence is ambiguous or has a configured reason for caution.
 
-**How to read it.** The generated cases produce many more `PLAUSIBLE` peers than `SUSPICIOUS` or `UNCERTAIN` peers. These are scenario-driven counts, not real-world proportions. `INSUFFICIENT_EVIDENCE` does not appear because no cases with that status were included in the displayed run.
+**Y-axis — Generated peers**
 
-### 8. Generated-label detection and false alarms
+This is the number of generated peer cases assigned each status across the counted synthetic trials and scenarios.
+
+The chart shows that the evaluation exercised multiple verifier outcomes, with many more plausible peers than suspicious or uncertain ones. These counts depend on how the scenarios were generated; they are not estimates of how peers would be distributed in a real deployment. There is no `INSUFFICIENT_EVIDENCE` bar because that status did not occur in the records included in this plot.
+
+## Plot 8 — Synthetic ground-truth detection
+
+[Open Plot 8](figures/synthetic-distance-sweep/08_synthetic_ground_truth_detection.png)
 
 ![Synthetic ground-truth mismatch detection](figures/synthetic-distance-sweep/08_synthetic_ground_truth_detection.png)
 
-**X-axis — Scenarios with generated mismatch labels.** The categories shown have synthetic actual/claimed labels that permit comparison with the verifier output.
+**X-axis — Scenarios with generated mismatch labels**
 
-**Y-axis — Rate (not real-world accuracy).** The scale runs from 0 to 1. For instance, 1.0 means all relevant generated cases in that metric were counted; 0.2 means 20%.
+The labels here are the scenarios for which the experiment has generated “ground truth” to compare against verification. That ground truth exists only inside the synthetic experiment.
 
-**Bars — Synthetic detection rate.** Of the generated mismatches, this is the share classified as `SUSPICIOUS`.
+**Y-axis — Rate (not real-world accuracy)**
 
-**Line — Synthetic false-alarm rate.** Of the generated non-mismatches, this is the share classified as `SUSPICIOUS`.
+The scale runs from 0.0 to 1.0:
 
-**How to read it.** The shown detection bars are at 1.0 and the false-alarm rate is zero in this run. Under these generated inputs, mismatches were flagged and the counted non-mismatches were not. This is not evidence of 100% real-world accuracy. The false-alarm line lies on the zero baseline and can be difficult to see; the legend also overlaps the chart near the top.
+- `1.0` means all relevant generated cases in that calculation were counted.
+- `0.0` means none were.
 
-### 9. Detection by generated location offset
+**Bars — Synthetic detection rate**
+
+This measures the share of generated mismatches classified as `SUSPICIOUS` by the verifier.
+
+**Line — Synthetic false-alarm rate**
+
+This measures the share of generated non-mismatches classified as `SUSPICIOUS`.
+
+In this plot, the bars are at 1.0 and the false-alarm line is at or near zero for the shown scenarios. In this generated setup, the verifier flagged the mismatches and did not flag the generated non-mismatches counted by the metric.
+
+That is a strong-looking result because the generated cases are controlled to make a contrast. It is not evidence of 100% real-world accuracy. Visually, the legend overlaps the upper part of the chart, and the zero false-alarm line is hard to see; both should be improved before a presentation.
+
+## Plot 9 — Synthetic location distance sweep
+
+[Open Plot 9](figures/synthetic-distance-sweep/09_synthetic_location_distance_sweep.png)
 
 ![Synthetic location mismatch sweep](figures/synthetic-distance-sweep/09_synthetic_location_distance_sweep.png)
 
-**X-axis — Generated actual-to-claimed offset (km).** This is the generated distance between a peer’s actual coordinates and its claimed coordinates. It is not a measurement of a real peer’s location.
+**X-axis — Generated actual-to-claimed offset (km)**
 
-**Y-axis — Rate under the configured model.** The scale from 0 to 1 gives the fraction of generated cases at that offset counted by each metric.
+This is how far apart the generated peer’s actual and claimed coordinates are, in kilometers. Each tested offset is a controlled scenario, not a measured peer location.
 
-**Blue line — Synthetic mismatch detection.** The share of generated mismatches classified as `SUSPICIOUS` at each offset. In the checked-in 30-trial sweep, detection is 0% at 500, 1,000, 2,000, and 5,000 km; 20% at 8,000 km; and 100% at 10,000 and 15,000 km.
+**Y-axis — Rate under configured model**
 
-**Orange line — Synthetic false alarm.** The share of generated non-mismatches classified as `SUSPICIOUS`; it is 0% at each tested offset in this run.
+The rate runs from 0.0 to 1.0, meaning zero to all generated cases counted at that offset.
 
-**How to read it.** Detection rises for larger generated offsets under this witness layout and latency model. The curve is specific to those synthetic inputs and does not establish the real distance at which a location claim can be detected. Routing, congestion, witness placement, and model calibration would all affect a real measurement study.
+**Blue line — Synthetic mismatch detection**
+
+At each offset, this is the share of generated location mismatches classified as suspicious. In this run, it is zero through 5,000 km, about 0.2 at 8,000 km, then 1.0 at 10,000 and 15,000 km.
+
+**Orange line — Synthetic false alarm**
+
+This is the share of generated non-mismatches classified as suspicious; it stays at zero in the displayed run.
+
+The rising curve means the configured model detected larger generated offsets more often in these scenarios. It does not tell us the real distance at which location claims become detectable: actual routing, congestion, witness placement, and model calibration would all matter. The plotted rates are specific to these generated inputs.
 
 ## Reproduce
 
@@ -132,4 +221,4 @@ Copy-Item data/experiments/plots/0[1-8]_*.png docs/figures/synthetic-distance-sw
 Copy-Item data/experiments/distance_sweep_extended/plots/09_synthetic_location_distance_sweep.png docs/figures/synthetic-distance-sweep/
 ```
 
-The first command uses the scenarios, seeds, and parameters in `configs/evaluation.yaml`. The second specifies the offsets used for the 30-trial curve. Generated JSON/CSV records, manifests, and intermediate plots remain under `data/experiments/`; the selected, explicitly synthetic PNG figures are committed here.
+The first command uses the scenarios, seeds, and parameters in `configs/evaluation.yaml`. The second specifies the offsets used for the 30-trial curve. Generated JSON/CSV records, manifests, and intermediate plots remain under `data/experiments/`; the selected synthetic PNG figures are committed here.
