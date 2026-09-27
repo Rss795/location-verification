@@ -10,7 +10,11 @@ from location_verifier.experiments.generator import generate_trial
 from location_verifier.inference.distance import haversine_distance_km
 from location_verifier.experiments.metrics import placement_metrics, reconfiguration_metrics
 from location_verifier.experiments.models import EvaluationOptions, EvaluationSettings
-from location_verifier.experiments.plotting import plot_results
+from location_verifier.experiments.plotting import (
+    _scenario_policy_categories,
+    _verification_status_counts,
+    plot_results,
+)
 from location_verifier.experiments.runner import load_evaluation_settings, run_evaluation
 from location_verifier.experiments.scenarios import ScenarioName
 from location_verifier.experiments.serialization import write_results
@@ -267,10 +271,10 @@ def test_repeated_trial_aggregation_groups_seeded_object_placements(phase_config
     assert fdar_summary["mean_reconfiguration_event_count"] == 0
 
 
-def test_plotting_generates_all_eight_required_plots(phase_configs, tmp_path) -> None:
+def test_plotting_generates_all_supported_plots_with_policy_categories(phase_configs, tmp_path) -> None:
     inference, placement = phase_configs
     options = EvaluationOptions(
-        scenarios=(ScenarioName.ALL_HONEST, ScenarioName.ONE_SUSPICIOUS, ScenarioName.STATUS_CHANGE, ScenarioName.MULTIPLE_OBJECTS, ScenarioName.DISTANCE_SWEEP),
+        scenarios=(ScenarioName.ALL_HONEST, ScenarioName.ONE_SUSPICIOUS, ScenarioName.UNCERTAIN_PEERS, ScenarioName.STATUS_CHANGE, ScenarioName.MULTIPLE_OBJECTS, ScenarioName.DISTANCE_SWEEP),
         seeds=(42,), trials=1, objects=3, output_dir=str(tmp_path), peers=12,
         witnesses=5, replication_factor=3, failure_domain_level="building", measurements_per_witness=10,
         distance_sweep_km=(0, 50, 500, 1000),
@@ -281,6 +285,50 @@ def test_plotting_generates_all_eight_required_plots(phase_configs, tmp_path) ->
 
     assert len(paths) == 9
     assert all(path.exists() and path.stat().st_size > 0 for path in paths)
+    categories, labels = _scenario_policy_categories(results["aggregated"])
+    uncertain_labels = {
+        labels[index] for index, (scenario, _) in enumerate(categories)
+        if scenario == "uncertain_peers"
+    }
+    assert uncertain_labels == {
+        "uncertain_peers (balanced)",
+        "uncertain_peers (permissive)",
+        "uncertain_peers (strict)",
+    }
+
+
+def test_distance_only_plotting_omits_unsupported_charts_and_counts_each_offset(phase_configs, tmp_path) -> None:
+    inference, placement = phase_configs
+    options = EvaluationOptions(
+        scenarios=(ScenarioName.DISTANCE_SWEEP,), seeds=(42,), trials=1,
+        objects=1, output_dir=str(tmp_path), peers=6, witnesses=5,
+        replication_factor=3, failure_domain_level="building", measurements_per_witness=10,
+        distance_sweep_km=(500, 1000),
+    )
+    results = run_evaluation(options, inference, placement)
+    paths = plot_results(results, tmp_path / "plots")
+
+    assert {path.name for path in paths} == {
+        "07_verification_status_distribution.png",
+        "09_synthetic_location_distance_sweep.png",
+    }
+    assert all(path.exists() and path.stat().st_size > 0 for path in paths)
+
+    # Each offset contributes one generated peer-status set; BASELINE and
+    # FDAR are duplicate views of that same trial evidence.
+    status_records = [
+        {
+            "seed": 42,
+            "trial": 0,
+            "scenario": "distance_sweep",
+            "mode": mode,
+            "synthetic_location_mismatch_distance_km": offset,
+            "verification_statuses": {"peer-a": "PLAUSIBLE", "peer-b": "UNCERTAIN"},
+        }
+        for offset in (500.0, 1000.0)
+        for mode in ("BASELINE", "FDAR")
+    ]
+    assert _verification_status_counts(status_records) == {"PLAUSIBLE": 2, "UNCERTAIN": 2}
 
 
 def test_distance_sweep_isolates_coordinate_offset_and_records_synthetic_location_metrics(phase_configs, tmp_path) -> None:

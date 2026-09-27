@@ -1,8 +1,10 @@
 # Synthetic evaluation plots
 
-These figures are committed so they can be viewed directly on GitHub. They come from a generated distance-sweep evaluation and are **synthetic model results**, not measurements from campus or geographically distributed peers. The rates shown describe only generated scenarios under the configured latency assumptions, witness layout, and noise. They are not field accuracy, calibrated probabilities, or evidence of physical location.
+These figures are deterministic **synthetic model results**. They are not measurements from campus or geographically distributed peers, field accuracy, calibrated probabilities, or proof of physical location. The configured latency assumptions, generated witness layout, and noise determine the plotted rates. See [Evaluation Engine](evaluation_engine.md) for the metric definitions and limits.
 
-The reported 30-trial run flagged 0% of generated mismatches at 500, 1,000, 2,000, and 5,000 km; 20% at 8,000 km; and all generated mismatches at 10,000 and 15,000 km. This run does not support a 500 km verification boundary. See [Evaluation Engine](evaluation_engine.md) for interpretation and limitations.
+Plots 1–8 come from the full seeded synthetic evaluation suite. Plot 9 comes from a separate 30-trial location-mismatch sweep. Each chart is generated only when its source run contains the scenario data required for that chart; unsupported charts are omitted instead of being written as empty or zero-valued figures. The status distribution counts each generated trial and each distinct mismatch offset once, without counting the duplicated BASELINE/FDAR records twice.
+
+The 30-trial sweep reports 0% generated mismatch detection at 500, 1,000, 2,000, and 5,000 km; 20% at 8,000 km; and 100% at 10,000 and 15,000 km. The generated false-alarm rate is 0% at each offset. These results describe this configured synthetic model only and do not establish a real-world distance threshold.
 
 ## Plots
 
@@ -44,11 +46,13 @@ The reported 30-trial run flagged 0% of generated mismatches at 500, 1,000, 2,00
 
 ## Reproduce
 
-From the repository root:
+From the repository root, regenerate the full suite (plots 1–8) and the independent 30-trial distance sweep (plot 9):
 
 ```powershell
-python experiments/run_evaluation.py --scenario distance_sweep --trials 30 --distance-sweep-km 0,50,250,500,1000,2000,5000,8000,10000,15000 --output-dir data/experiments/distance_sweep_extended
-python experiments/plot_results.py --input data/experiments/distance_sweep_extended/raw/evaluation_records.json --aggregated data/experiments/distance_sweep_extended/aggregated/evaluation_summary.json --output-dir data/experiments/distance_sweep_extended/plots
+python experiments/run_evaluation.py --output-dir data/experiments
+python experiments/run_evaluation.py --scenario distance_sweep --trials 30 --distance-sweep-km 500,1000,2000,5000,8000,10000,15000 --output-dir data/experiments/distance_sweep_extended
+Copy-Item data/experiments/plots/0[1-8]_*.png docs/figures/synthetic-distance-sweep/
+Copy-Item data/experiments/distance_sweep_extended/plots/09_synthetic_location_distance_sweep.png docs/figures/synthetic-distance-sweep/
 ```
 
-The generated JSON/CSV records and other run outputs stay under the ignored `data/experiments/` directory; only these selected, explicitly synthetic PNG figures are included in the repository.
+The first command uses the scenarios, seeds, and parameters in `configs/evaluation.yaml`. The second command specifies the exact offsets used for the 30-trial curve. Generated JSON/CSV records, manifests, and intermediate plots remain under the ignored `data/experiments/` directory; the selected, explicitly synthetic PNG figures are committed here.
